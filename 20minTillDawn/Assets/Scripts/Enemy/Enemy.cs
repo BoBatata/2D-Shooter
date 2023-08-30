@@ -6,7 +6,6 @@ public class Enemy : MonoBehaviour
 {
 
     [SerializeField] private float velocity = 5;
-    [SerializeField] private int enemyLife = 3;
     private int lives;
     private Transform enemyTransform;
 
@@ -17,27 +16,16 @@ public class Enemy : MonoBehaviour
         enemyTransform = GetComponent<Transform>();
     }
 
+    private void Start()
+    {
+
+    }
+
     void Update()
     {
+
         targetPosition = PlayerInfo.instance.GetPlayerPosition();
         enemyTransform.position = Vector3.MoveTowards(enemyTransform.position, targetPosition, velocity * Time.deltaTime);
-    }
 
-    private void OnCollisionEnter2D(Collision2D collision)
-    {
-        LifeHandler(collision);
-    }
-
-    private void LifeHandler(Collision2D collision)
-    {
-        if (collision.collider.tag == "Bullet")
-        {
-            enemyLife--;
-            GameManager.Instance.SetGameScore(1);
-        }
-        if (enemyLife <= 0)
-        {
-            Destroy(this.gameObject);
-        }
     }
 }
