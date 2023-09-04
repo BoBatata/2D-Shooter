@@ -9,6 +9,10 @@ public class UIManager : MonoBehaviour
 {
     public static UIManager instance;
 
+    [Header ("Containers")]
+    [SerializeField] private Transform powerUpContainer;
+
+    [Header ("TopView-Texts")]
     [SerializeField] private TextMeshProUGUI lifesText;
     [SerializeField] private TextMeshProUGUI scoreText;
     [SerializeField] private TextMeshProUGUI xpInfoText;
@@ -33,6 +37,12 @@ public class UIManager : MonoBehaviour
     {
         lifesText.gameObject.SetActive(true);
         scoreText.gameObject.SetActive(true);
+
+        SetPowerUPContainer(false);
+    }
+    public void SetPowerUPContainer(bool isActive)
+    {
+        powerUpContainer.gameObject.SetActive(isActive);
     }
 
     public void SetScoreText(int updatedScore)
@@ -54,4 +64,5 @@ public class UIManager : MonoBehaviour
     {
         currentLevelXP.text = "Level: " + newLevel.ToString();
     }
+
 }

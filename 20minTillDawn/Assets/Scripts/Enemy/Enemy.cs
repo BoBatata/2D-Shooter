@@ -15,12 +15,6 @@ public class Enemy : MonoBehaviour
     {
         enemyTransform = GetComponent<Transform>();
     }
-
-    private void Start()
-    {
-
-    }
-
     void Update()
     {
 

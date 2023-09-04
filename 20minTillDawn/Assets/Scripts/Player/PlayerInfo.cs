@@ -19,7 +19,7 @@ public class PlayerInfo : MonoBehaviour
     private int playerXP = 0;
     private int toLevelUpXP = 5;
 
-    public Animator animator {get; set;}
+    public Animator animator { get; set; }
 
     private void Awake()
     {
@@ -47,19 +47,26 @@ public class PlayerInfo : MonoBehaviour
     {
         if (collision.collider.tag == "Enemy")
         {
-            LifeHandler();
+            LifeHandler(-1);
         }
     }
 
-    private void LifeHandler()
+    public void LifeHandler(int value)
     {
-        isHurt = true;
-        lifes--;
-        GameManager.Instance.SetPlayerLife(lifes);
-        if (lifes <= 0)
+        if (value > 0)
         {
-            Destroy(this.gameObject);
+            lifes += value;
         }
+        else
+        {
+            isHurt = true;
+            lifes += value;
+            if (lifes <= 0)
+            {
+                Destroy(this.gameObject);
+            }
+        }
+        GameManager.Instance.SetPlayerLife(lifes);
     }
 
     public Vector2 GetPlayerPosition()
@@ -84,7 +91,7 @@ public class PlayerInfo : MonoBehaviour
 
     public void SetPlayerHurt(bool hurt)
     {
-         isHurt = hurt;
+        isHurt = hurt;
     }
 
     public SpriteRenderer GetSpriteRenderer()
@@ -110,8 +117,9 @@ public class PlayerInfo : MonoBehaviour
             playerLevel++;
             playerXP -= toLevelUpXP;
             toLevelUpXP += 5;
+            GameManager.Instance.OnLevelUP();
         }
-        GameManager.Instance.SetNewXPInfo(playerLevel,playerXP, toLevelUpXP);
+        GameManager.Instance.SetLevelInfo(playerLevel, playerXP, toLevelUpXP);
     }
 
 }

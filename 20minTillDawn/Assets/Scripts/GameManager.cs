@@ -48,9 +48,16 @@ public class GameManager : MonoBehaviour
         UIManager.instance.SetLifesText(playerLifes);
     }
 
-    public void SetNewXPInfo(int playerLevel, int currentXP, int toLevelUpXP)
+    public void SetLevelInfo(int playerLevel, int currentXP, int toLevelUpXP)
     {
         UIManager.instance.SetXPInfoText(currentXP, toLevelUpXP);
         UIManager.instance.SetPlayerLevelText(playerLevel);
+    }
+
+    public void OnLevelUP()
+    {
+        Time.timeScale = 0;
+        UIManager.instance.SetPowerUPContainer(true);
+        
     }
 }

@@ -7,12 +7,7 @@ public class EnemyInfo : MonoBehaviour
     [SerializeField] private int enemyLife = 2;
 
     public static EnemyInfo instance;
-    private SpriteRenderer enemySpriteRenderer;
 
-    private void Awake()
-    {
-        enemySpriteRenderer = GetComponent<SpriteRenderer>();
-    }
     private void OnCollisionEnter2D(Collision2D collision)
     {
         LifeHandler(collision);
@@ -30,11 +25,5 @@ public class EnemyInfo : MonoBehaviour
             Destroy(this.gameObject);
         }
     }
-
-    public SpriteRenderer GetEnemySpriteRenderer()
-    {
-        return enemySpriteRenderer;
-    }
-
 
 }
