@@ -14,7 +14,7 @@ public class Bullet : MonoBehaviour
     }
     void Update()
     {
-        transform.Translate(Vector3.down * bulletVelocity * Time.deltaTime);
+        transform.Translate(Vector3.right * bulletVelocity * Time.deltaTime);
     }
 
     private IEnumerator LifeSpan()

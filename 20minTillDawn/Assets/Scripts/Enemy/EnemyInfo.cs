@@ -21,7 +21,7 @@ public class EnemyInfo : MonoBehaviour
         }
         if (enemyLife <= 0)
         {
-            GameManager.Instance.SetGameScore(1);   
+            GameManager.instance.SetGameScore(1);   
             Destroy(this.gameObject);
         }
     }

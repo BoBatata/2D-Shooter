@@ -40,7 +40,7 @@ public class PlayerInfo : MonoBehaviour
 
     private void Start()
     {
-        GameManager.Instance.SetPlayerLife(lifes);
+        GameManager.instance.SetPlayerLife(lifes);
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
@@ -66,7 +66,7 @@ public class PlayerInfo : MonoBehaviour
                 Destroy(this.gameObject);
             }
         }
-        GameManager.Instance.SetPlayerLife(lifes);
+        GameManager.instance.SetPlayerLife(lifes);
     }
 
     public Vector2 GetPlayerPosition()
@@ -117,9 +117,9 @@ public class PlayerInfo : MonoBehaviour
             playerLevel++;
             playerXP -= toLevelUpXP;
             toLevelUpXP += 5;
-            GameManager.Instance.OnLevelUP();
+            GameManager.instance.OnLevelUP();
         }
-        GameManager.Instance.SetLevelInfo(playerLevel, playerXP, toLevelUpXP);
+        GameManager.instance.SetLevelInfo(playerLevel, playerXP, toLevelUpXP);
     }
 
 }

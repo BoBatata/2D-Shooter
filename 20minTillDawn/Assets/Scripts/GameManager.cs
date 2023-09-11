@@ -4,16 +4,19 @@ using UnityEngine;
 
 public class GameManager : MonoBehaviour
 {
-    public static GameManager Instance;
+    public static GameManager instance;
     private int gameScore = 0;
     private int playerLifes = 0;
+    [SerializeField] private float enemyVelocity = 5;
+    [SerializeField] private float slowVelocity = 1;
+    [SerializeField] private float currentVelocity = 5;
 
     private void Awake()
     {
         #region Singleton
-        if (Instance == null)
+        if (instance == null)
         {
-            Instance = this;
+            instance = this;
         }
         else
         {
@@ -59,5 +62,37 @@ public class GameManager : MonoBehaviour
         Time.timeScale = 0;
         UIManager.instance.SetPowerUPContainer(true);
         
+    }
+
+    public float GetEnemyVelocity()
+    {
+        return enemyVelocity;
+    }
+
+    public float GetSlowVelocity()
+    {
+        return slowVelocity;
+    }
+
+    public float GetCurrentVelocity()
+    {
+        return currentVelocity;
+    }
+
+    public void TimeSlow(bool powerUpOn)
+    {
+        print("deu certo");
+        if (powerUpOn == true)
+        {
+            StartCoroutine(SlowTimer());
+        }
+
+    }
+
+    private IEnumerator SlowTimer()
+    {
+        currentVelocity = slowVelocity;
+        yield return new WaitForSeconds(20f);
+        currentVelocity = enemyVelocity;
     }
 }
